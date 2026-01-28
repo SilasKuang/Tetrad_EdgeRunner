@@ -205,3 +205,13 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Ignore input files (they are usually confidential before publication)
+*.txt
+
+# Ignore adjacency matrix output (also confidential)
+*.csv
+
+# Ignore plot output (confidential)
+*.png
+*.pdf
