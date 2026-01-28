@@ -3,6 +3,15 @@ import pandas as pd
 import networkx as nx
 from pathlib import Path
 import re
+import matplotlib as plt
+import matplotlib.font_manager as fm
+
+# Set font to Arial
+fm.fontManager.addfont("ARIAL.TTF")
+plt.rcParams['font.family'] = 'Arial'
+# Save words as editable text 
+plt.rcParams['pdf.fonttype'] = 42   # Use TrueType fonts
+plt.rcParams['ps.fonttype'] = 42    # For PostScript too
 
 inp = Path("tetrad_graph.txt")   # text export from Tetrad GUI
 edges = []

@@ -6,6 +6,15 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from collections import Counter
 from matplotlib.ticker import MaxNLocator
+import matplotlib as plt
+import matplotlib.font_manager as fm
+
+# Set font to Arial
+fm.fontManager.addfont("ARIAL.TTF")
+plt.rcParams['font.family'] = 'Arial'
+# Save words as editable text 
+plt.rcParams['pdf.fonttype'] = 42   # Use TrueType fonts
+plt.rcParams['ps.fonttype'] = 42    # For PostScript too
 
 # -------------- load edge list (adapt names/formats as needed) ------------
 edges = pd.read_csv("tetrad_edges.csv")  # columns: source,target[,weight]
