@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 from collections import Counter
+from matplotlib.ticker import MaxNLocator
 
 # -------------- load edge list (adapt names/formats as needed) ------------
 edges = pd.read_csv("tetrad_edges.csv")  # columns: source,target[,weight]
@@ -56,11 +57,23 @@ print("Saved node_centrality_table.csv")
 
 # -------------- top-N barplot --------------------------------------------
 topN = 20
-top_df = df.head(topN).iloc[::-1]  # reverse for horizontal barplot
+top_df = df.head(topN).iloc[::-1]
+
 plt.figure(figsize=(5,3.5))
-plt.barh(top_df['node'], top_df['degree'])
+bars = plt.barh(top_df['node'], top_df['degree'])
+
 plt.xlabel('Degree')
 plt.title(f'Top {topN} hub nodes by degree')
+
+# force integer ticks
+plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True, nbins=6))
+
+# add value labels to bars
+for bar in bars:
+    w = bar.get_width()
+    plt.text(w + 0.1, bar.get_y() + bar.get_height()/2,
+             f'{int(w)}', va='center', fontsize=8)
+
 plt.tight_layout()
 plt.savefig("topN_hubs_barplot.pdf", dpi=300)
 plt.close()
